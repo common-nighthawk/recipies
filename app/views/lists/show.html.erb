@@ -1,0 +1,23 @@
+<%= @list.name %>
+
+<ul>
+  <% @list.items.each do |item| %>
+    <% if !item.purchased? %>
+      <li>
+        <%= item.name %>
+        -
+        <%= item.quantity %>
+        <%= item.measurement_unit %>
+      </li>
+    <% else %>
+      <strike>
+        <li>
+          <%= item.name %>
+          -
+          <%= item.quantity %>
+          <%= item.measurement_unit %>
+        </li>
+      </strike>
+    <% end %>
+  <% end %>
+</ul>

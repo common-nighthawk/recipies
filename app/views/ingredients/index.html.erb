@@ -3,6 +3,10 @@
 </nav>
 <hr>
 
+<%= link_to("Create Shopping List", "lists", :method => "post") %>
+
+<hr>
+
 <% session[:slugs].each do |slug| %>
   <% file = File.read("/home/daniel/recipes_for_erin/app/assets/recipies/#{slug}.json") %>
   <% recipe = JSON.parse(file) %>
