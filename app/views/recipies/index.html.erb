@@ -6,6 +6,11 @@ Selected Recipies--
   </div>
 <% end %>
 
+<% if session[:slugs].any? %>
+  <hr>
+  <%= link_to("View Ingredient List", :controller => "ingredients", :action => "index") %>
+<% end %>
+
 <hr>
 
 All Recipies--
