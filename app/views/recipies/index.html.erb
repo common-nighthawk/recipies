@@ -1,6 +1,7 @@
 <% @recipies.each do |recipe| %>
   <% recipe = JSON.parse(File.read(recipe)) %>
   <div>
+    <%= link_to("Add", :controller => "recipies", :action => "index", :slug => recipe['public_slug']) %>
     <i><%= recipe['public_slug'] %></i>
     -
     <%= recipe['name'] %>
