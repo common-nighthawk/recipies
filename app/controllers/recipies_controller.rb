@@ -1,8 +1,20 @@
 class RecipiesController < ApplicationController
   def index
-    slug = params[:slug]
-    cookies[:slugs] = [] if cookies[:slugs].nil?
-    cookies[:slugs] << slug if slug.present?
+    slug_to_add, slug_to_remove = nil, nil
+
+    existing_slugs = session[:slugs] || []
+
+    if params[:slug].present?
+      if params[:slug][0] == '-'
+        slug_to_remove = params[:slug][1..-1]
+        existing_slugs = existing_slugs - [slug_to_remove]
+      else
+        slug_to_add = params[:slug]
+        existing_slugs = existing_slugs + [slug_to_add]
+      end
+    end
+
+    session[:slugs] = (existing_slugs).compact.uniq
     @recipies = Dir.glob('/home/daniel/recipes_for_erin/app/assets/recipies/*.json').sort
   end
 end

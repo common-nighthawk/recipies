@@ -1,3 +1,14 @@
+Selected Recipies--
+<% session[:slugs].each do |slug| %>
+  <div>
+    <%= link_to("Remove", :controller => "recipies", :action => "index", :slug => "-#{slug}") %>
+    <%= slug %>
+  </div>
+<% end %>
+
+<hr>
+
+All Recipies--
 <% @recipies.each do |recipe| %>
   <% recipe = JSON.parse(File.read(recipe)) %>
   <div>
