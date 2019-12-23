@@ -1,12 +1,20 @@
+<nav>
+  <%= link_to("Home", :controller => "recipies", :action => "index") %>
+</nav>
+<hr>
+
 <% session[:slugs].each do |slug| %>
   <% file = File.read("/home/daniel/recipes_for_erin/app/assets/recipies/#{slug}.json") %>
   <% recipe = JSON.parse(file) %>
 
   <%= recipe['name'] %>
   <ul>
-    <% recipe['ingredients'].each do |ingredient| %>
+    <% recipe['ingredients_full'].each do |ingredient| %>
       <li>
-        <%= ingredient %>
+        <%= ingredient['name'] %>
+        -
+        <%= ingredient['quantity'] %>
+        <%= ingredient['measurementUnit'] %>
       </li>
     <% end %>
   </ul>

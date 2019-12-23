@@ -1,0 +1,22 @@
+<h2>
+  <%= @recipe['name'] %>
+</h2>
+
+<% image = @recipe['images'].find { |i| i['image']['size'] == 'medium-rectangle' } %>
+<%= image_tag(image['image']['url']) %>
+
+<ul>
+  <% @recipe['ingredients'].each do |ingredient| %>
+    <li>
+      <%= ingredient %>
+    </li>
+  <% end %>
+</ul>
+
+<ol>
+  <% @recipe['steps'].each do |step| %>
+    <li>
+      <%= raw(step['description']) %>
+    </li>
+  <% end %>
+</ol>

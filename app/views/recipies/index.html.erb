@@ -20,7 +20,7 @@ All Recipies--
     <%= link_to("Add", :controller => "recipies", :action => "index", :slug => recipe['public_slug']) %>
     <i><%= recipe['public_slug'] %></i>
     -
-    <%= recipe['name'] %>
+    <%= link_to(recipe['name'], :controller => "recipies", :action => "show", :id => recipe['public_slug']) %>
     <br>
     <% if false %>
       <% image = recipe['images'].find { |i| i['image']['size'] == 'small-square' } %>
