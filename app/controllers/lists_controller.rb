@@ -3,7 +3,7 @@ class ListsController < ApplicationController
     list = List.new(name: "List created on #{Time.now.strftime("%Y-%m-%d @ %H:%M")}")
 
     session[:slugs].each do |slug|
-      file = File.read("/home/daniel/recipes_for_erin/app/assets/recipies/#{slug}.json")
+      file = File.read("app/assets/recipies/#{slug}.json")
       recipe = JSON.parse(file)
 
       recipe['ingredients_full'].each do |ingredient|

@@ -15,11 +15,11 @@ class RecipiesController < ApplicationController
     end
 
     session[:slugs] = (existing_slugs).compact.uniq
-    @recipies = Dir.glob('/home/daniel/recipes_for_erin/app/assets/recipies/*.json').sort
+    @recipies = Dir.glob('app/assets/recipies/*.json').sort
   end
 
   def show
-    file = File.read("/home/daniel/recipes_for_erin/app/assets/recipies/#{params[:id]}.json")
+    file = File.read("app/assets/recipies/#{params[:id]}.json")
     @recipe = JSON.parse(file)
   end
 end
