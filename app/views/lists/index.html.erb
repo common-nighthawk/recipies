@@ -1,0 +1,10 @@
+<nav>
+  <%= link_to("Home", :controller => "recipies", :action => "index") %>
+  ||
+  <%= link_to("Lists", :controller => "lists", :action => "index") %>
+</nav>
+<hr>
+
+<% @lists.each do |list| %>
+  <%= link_to(list.name, list_path(list)) %>
+<% end %>

@@ -1,23 +1,32 @@
+<nav>
+  <%= link_to("Home", :controller => "recipies", :action => "index") %>
+  ||
+  <%= link_to("Lists", :controller => "lists", :action => "index") %>
+</nav>
+<hr>
+
 <%= @list.name %>
 
 <ul>
   <% @list.items.each do |item| %>
     <% if !item.purchased? %>
       <li>
+        <%= link_to("🛒", item_path(item, purchased_at: Time.now), :method => "put") %>
         <%= item.name %>
         -
         <%= item.quantity %>
         <%= item.measurement_unit %>
       </li>
     <% else %>
-      <strike>
         <li>
-          <%= item.name %>
-          -
-          <%= item.quantity %>
-          <%= item.measurement_unit %>
-        </li>
-      </strike>
+          <%= link_to("🛒", item_path(item, purchased_at: nil), :method => "put") %>
+          <strike>
+            <%= item.name %>
+            -
+            <%= item.quantity %>
+            <%= item.measurement_unit %>
+        </strike>
+      </li>
     <% end %>
   <% end %>
 </ul>
