@@ -8,7 +8,7 @@
 <%= @list.name %>
 
 <ul>
-  <% @list.items.each do |item| %>
+  <% @list.items.sort_by { |i| [i.name, i.id] }.each do |item| %>
     <% if !item.purchased? %>
       <li>
         <%= link_to("🛒", item_path(item, purchased_at: Time.now), :method => "put") %>

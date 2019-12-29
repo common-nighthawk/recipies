@@ -21,17 +21,19 @@ Selected Recipies--
 <hr>
 
 All Recipies--
-<% @recipies.each do |recipe| %>
-  <% recipe = JSON.parse(File.read(recipe)) %>
-  <div>
-    <%= link_to("Add", :controller => "recipies", :action => "index", :slug => recipe['public_slug']) %>
-    <i><%= recipe['public_slug'] %></i>
-    -
-    <%= link_to(recipe['name'], :controller => "recipies", :action => "show", :id => recipe['public_slug']) %>
-    <br>
-    <% if false %>
-      <% image = recipe['images'].find { |i| i['image']['size'] == 'small-square' } %>
-      <%= image_tag(image['image']['url']) %>
-    <% end %>
-  </div>
-<% end %>
+<table border="1">
+  <% @recipies.each do |recipe| %>
+    <tr>
+      <td>
+        <% image = recipe['images'].find { |i| i['image']['size'] == 'medium-square' } %>
+        <%= image_tag(image['image']['url']) %>
+      </td>
+      <td>
+        <%= link_to(recipe['name'], :controller => "recipies", :action => "show", :id => recipe['public_slug']) %>
+      </td>
+      <td>
+        <%= link_to("Add", :controller => "recipies", :action => "index", :slug => recipe['public_slug']) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
