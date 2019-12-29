@@ -9,7 +9,7 @@ Selected Recipies--
 <% session[:slugs].each do |slug| %>
   <div>
     <%= link_to("Remove", :controller => "recipies", :action => "index", :slug => "-#{slug}") %>
-    <%= slug %>
+    <%= JSON.parse(File.read("app/assets/recipies/#{slug}.json"))['name'] %>
   </div>
 <% end %>
 

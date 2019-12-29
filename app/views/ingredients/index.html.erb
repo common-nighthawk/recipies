@@ -15,7 +15,7 @@
 
   <%= recipe['name'] %>
   <ul>
-    <% recipe['ingredients_full'].each do |ingredient| %>
+    <% recipe['ingredients_full'].sort_by {|i| i['name'] }.each do |ingredient| %>
       <li>
         <%= ingredient['name'] %>
         -

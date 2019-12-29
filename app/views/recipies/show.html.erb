@@ -13,9 +13,12 @@
 <%= image_tag(image['image']['url']) %>
 
 <ul>
-  <% @recipe['ingredients'].each do |ingredient| %>
+  <% @recipe['ingredients_full'].sort_by {|i| i['name'] }.each do |ingredient| %>
     <li>
-      <%= ingredient %>
+      <%= ingredient['name'] %>
+      -
+      <%= ingredient['quantity'] %>
+      <%= ingredient['measurementUnit'] %>
     </li>
   <% end %>
 </ul>
