@@ -11,7 +11,9 @@
   <% @list.items.sort_by { |i| [i.name, i.id] }.each do |item| %>
     <% if !item.purchased? %>
       <li>
-        <%= link_to("🛒", item_path(item, purchased_at: Time.now), :method => "put") %>
+        <span style="font-size:1.5em">
+          <%= link_to("🛒", item_path(item, purchased_at: Time.now), :method => "put") %>
+        </span>
         <%= item.name %>
         -
         <%= item.quantity %>
@@ -19,7 +21,9 @@
       </li>
     <% else %>
         <li>
-          <%= link_to("🛒", item_path(item, purchased_at: nil), :method => "put") %>
+          <span style="font-size:1.5em">
+            <%= link_to("🛒", item_path(item, purchased_at: nil), :method => "put") %>
+          </span>
           <strike>
             <%= item.name %>
             -

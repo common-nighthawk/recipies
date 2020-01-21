@@ -5,6 +5,10 @@
 </nav>
 <hr>
 
-<% @lists.each do |list| %>
-  <%= link_to(list.name, list_path(list)) %></br>
-<% end %>
+<ul>
+  <% @lists.each do |list| %>
+    <li>
+      <%= link_to(list.name, list_path(list)) %>
+    </li>
+  <% end %>
+</ul>

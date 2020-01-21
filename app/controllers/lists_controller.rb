@@ -1,11 +1,15 @@
 class ListsController < ApplicationController
   def create
-    list = List.new(name: "List created on #{Time.now.strftime("%Y-%m-%d @ %H:%M")}")
-
-    session[:slugs].each do |slug|
+    recipies = session[:slugs].map do |slug|
       file = File.read("app/assets/recipies/#{slug}.json")
-      recipe = JSON.parse(file)
+      JSON.parse(file)
+    end
 
+    list = List.new(
+      name: "List for #{recipies.map { |r| r['name'] }} from #{Time.now.strftime("%m-%d-%Y @ %l:%M %P")}"
+    )
+
+    recipies.each do |recipe|
       recipe['ingredients_full'].each do |ingredient|
         list.items.build(
           name: ingredient['name'],
@@ -15,6 +19,7 @@ class ListsController < ApplicationController
 
       end
     end
+
     list.save!
     redirect_to :action => "show", :id => list.id
   end
