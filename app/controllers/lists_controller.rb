@@ -5,9 +5,7 @@ class ListsController < ApplicationController
       JSON.parse(file)
     end
 
-    list = List.new(
-      name: "List for #{recipies.map { |r| r['name'] }} from #{Time.now.strftime("%m-%d-%Y @ %l:%M %P")}"
-    )
+    list = List.new(name: "List for #{recipies.map { |r| r['name'] }} from #{Time.now.getlocal(TZInfo::Timezone.get('US/Pacific').current_period.offset.utc_total_offset).strftime("%m-%d-%Y @ %l:%M %P")}")
 
     recipies.each do |recipe|
       recipe['ingredients_full'].each do |ingredient|
